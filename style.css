@@ -1,0 +1,1352 @@
+/* Eliminamos el pading y el margin por defecto */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Body con flex y heig para ocupar toda la pantalla y distribuir los componentes del juego correctamente */
+body {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(img/fondo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Estilos sobre el menu laterar y el contador  */
+.contenedorBotonesPanel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    z-index: 5;
+}
+
+.contenedorBotonesPanel button {
+    margin-top: 0.4rem;
+    margin-right: 0.1rem;
+    padding: 0.2rem;
+    background-color: #D3CD77;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 0%, rgb(129, 212, 51) 100%);
+    box-shadow: inset 0px 1px 0px #C9BAB5, 0px 2px 0px #59737c;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#disparadorCentroNotificaciones {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    margin-top: 0.4rem;
+    margin-left: 0.1rem;
+    padding: 0.2rem;
+    background-color: #D3CD77;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 0%, rgb(129, 212, 51) 100%);
+    box-shadow: inset 0px 1px 0px #C9BAB5, 0px 2px 0px #59737c;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#disparadorCentroNotificaciones p {
+    background-color: red;
+    /* padding: 0.4rem; */
+    border-radius: 20%;
+}
+
+
+
+#disparadorCentroNotificaciones:active,
+#disparadorCentroNotificaciones:disabled,
+.contenedorBotonesPanel button:active,
+.contenedorBotonesPanel button:disabled {
+    top: 7px;
+    background: rgb(44, 160, 202);
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 100%, rgb(129, 212, 51) 0%);
+    box-shadow: inset 0px 1px 0px #40B4CA, inset 0px -1px 0px #205964;
+    color: #156785;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3);
+
+}
+
+.contenedorBotonesPanel button:not(:first-of-type) {
+    opacity: 0;
+    animation: 1s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.contador {
+    position: absolute;
+    top: 0;
+    margin-top: 0.5rem;
+    margin-right: 0.1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-image: linear-gradient(15deg,
+            hsl(72deg 71% 56%) 1%,
+            hsl(81deg 60% 53%) 42%,
+            hsl(91deg 50% 49%) 49%,
+            hsl(105deg 47% 46%) 52%,
+            hsl(124deg 47% 41%) 52%,
+            hsl(147deg 100% 27%) 52%,
+            hsl(159deg 100% 29%) 51%,
+            hsl(169deg 100% 31%) 51%,
+            hsl(177deg 100% 33%) 53%,
+            hsl(183deg 100% 36%) 58%,
+            hsl(189deg 57% 52%) 87%);
+    display: flex;
+    text-shadow: 2px 2px 6px #000000;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Estilos sonre la imagen del menu de inicio y el contenedor de los botones*/
+#imagenMenu {
+    position: absolute;
+    top: 0;
+    margin-top: 7vh;
+    width: 20rem;
+}
+
+#contenedorBotones {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-image: linear-gradient(0deg,
+            #ff9452 0%,
+            hsl(29deg 100% 65%) 20%,
+            hsl(34deg 100% 64%) 34%,
+            hsl(40deg 96% 62%) 43%,
+            hsl(46deg 91% 61%) 48%,
+            hsl(53deg 83% 60%) 51%,
+            hsl(86deg 71% 68%) 52%,
+            hsl(138deg 71% 72%) 52%,
+            hsl(167deg 73% 68%) 52%,
+            hsl(183deg 68% 71%) 55%,
+            hsl(196deg 63% 79%) 80%);
+}
+
+/* div que contiene imagen botones y parrafo del panel edificio */
+
+.divConImagen {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #c4dfe2e0;
+    width: 95%;
+    padding: 1rem 0;
+    box-shadow: 0px 5px 10px #000000d4;
+    border-radius: 5px;
+}
+
+/* .divConImagen div{
+    justify-self: flex-start;
+} */
+
+/* Cabecera que se ve al iniciar el juego con las dos imagenes principales */
+#cabecera {
+    padding-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#cabecera img {
+    visibility: hidden;
+    width: 18rem;
+    margin-top: 5rem;
+}
+
+
+#cabecera img:nth-of-type(2) {
+    position: relative;
+    bottom: 32%;
+    width: 15rem;
+}
+
+
+/*ESTILO SOBRE BOTONES*/
+
+/* BOTONES DEL PANEL PRINCIPAL */
+#panelPrincipal button {
+    margin: 1rem;
+    background-color: #009F3C;
+    width: 10rem;
+    padding: 1rem;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 0%, rgb(129, 212, 51) 100%);
+    box-shadow: inset 0px 1px 0px #b2f17f, 0px 6px 0px #3d6f0d;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#panelPrincipal button:active,
+#panelPrincipal button:disabled {
+    top: 7px;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 100%, rgb(129, 212, 51) 0%);
+    box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
+    color: #156785;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3);
+    background: rgb(44, 160, 202);
+}
+
+#panelPrincipal button::before {
+    background-color: #072239;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    left: -2px;
+    top: 5px;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0px 1px 0px #fff;
+}
+
+#panelPrincipal button:active::before {
+    top: -2px;
+}
+
+/* BOTONES DEL MENU DE INICIO */
+#contenedorBotones button,
+.botonFinal {
+    margin: 1rem;
+    padding: 0.5rem;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 0%, rgb(129, 212, 51) 100%);
+    box-shadow: inset 0px 1px 0px #b2f17f, 0px 6px 0px #3d6f0d;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+#contenedorBotones button:nth-of-type(1),
+.botonFinal:nth-of-type(1) {
+    background-color: #FF9453;
+    box-shadow: inset 0px 1px 0px #FF9453, 0px 6px 0px #7c4929;
+}
+
+#contenedorBotones button:nth-of-type(2),
+.botonFinal:nth-of-type(2) {
+    background-color: #D3CD77;
+    box-shadow: inset 0px 1px 0px #D3CD77, 0px 6px 0px #746a20;
+}
+
+#contenedorBotones button:nth-of-type(1):active,
+#contenedorBotones button:nth-of-type(1):disabled,
+#contenedorBotones button:nth-of-type(2):active,
+#contenedorBotones button:nth-of-type(2):disabled,
+.botonFinal:active,
+.botonFinal:disabled {
+    top: 7px;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 100%, rgb(129, 212, 51) 0%);
+    box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
+    color: #156785;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3);
+    background: rgb(44, 160, 202);
+}
+
+/* ESTILOS SOBRE LOS PANELES QUE DESPLEGAMOS AL PULSAR EN EDIFICIO Y EN MERCADO */
+#panelEdificio,
+#panelMercado {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    position: absolute;
+    margin-top: 2%;
+    top: 0;
+    width: 95%;
+    height: 0;
+    background-image: linear-gradient(50deg,
+            hsl(72deg 71% 56%) 1%,
+            hsl(81deg 60% 53%) 42%,
+            hsl(91deg 50% 49%) 49%,
+            hsl(105deg 47% 46%) 52%,
+            hsl(124deg 47% 41%) 52%,
+            hsl(147deg 100% 27%) 52%,
+            hsl(159deg 100% 29%) 51%,
+            hsl(169deg 100% 31%) 51%,
+            hsl(177deg 100% 33%) 53%,
+            hsl(183deg 100% 36%) 58%,
+            hsl(189deg 57% 52%) 87%);
+    animation: 0.5s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+#panelMercado {
+    gap: 0.2rem;
+}
+
+#panelEdificio {
+    gap: 1px;
+}
+
+#panelEdificio h2,
+#panelMercado h2 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* ESTILOS SOBRE LOS BOTONES/CONTENEDORES DE LOS PANELES EDIFICIO Y MERCADO*/
+#panelEdificio button,
+#panelMercado button {
+    margin: 0.3rem;
+    background-color: #009F3C;
+    padding: 0.4rem;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 0%, rgb(129, 212, 51) 100%);
+    box-shadow: inset 0px 1px 0px #b2f17f, 0px 6px 0px #3d6f0d;
+    border-radius: 5px;
+    animation: 1.5s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#panelEdificio .divConImagen div,
+#panelMercado .divConImagen div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    animation: 1.5s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.divConImagen img {
+    animation: 0.2s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.imgTitulo {
+    margin-top: 2%;
+}
+
+#divPrincipalpanelEdificio,
+#divPrincipalpanelMercado {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow: scroll;
+    animation: 1.5s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+#divPrincipalpanelMercado div div:nth-of-type(2) button {
+    width: 50%;
+    border-radius: 50%;
+    background-color: #D3CD77;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    background-color: #D3CD77;
+    box-shadow: inset 0px 1px 0px #D3CD77, 0px 6px 0px #746a20;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#divPrincipalpanelMercado div div:nth-of-type(2){
+    width: 20%;
+}
+
+#divPrincipalpanelMercado div div:nth-of-type(2) p {
+    background-color: aliceblue;
+    border: 2px solid #746a20;
+    width:40%;
+}
+
+
+#divPrincipalpanelMercado div div:nth-of-type(2) button:active,
+#divPrincipalpanelMercado div div:nth-of-type(2) button:disabled {
+    top: 7px;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 100%, rgb(129, 212, 51) 0%);
+    box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
+    color: #156785;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3);
+    background: rgb(44, 160, 202);
+}
+
+
+
+
+
+
+
+
+
+
+
+#panelEdificio div button {
+    width: 60%;
+}
+
+#panelEdificio div p,
+#panelMercado div p {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.3rem;
+    /* background-color: rgba(240, 248, 255, 0.784); */
+    width: 62%;
+    text-align: center;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px aliceblue;
+    /* box-shadow: 2px 2px 10px #000000; */
+}
+
+#panelEdificio #atraspanelEdificio {
+    background-color: #e74c3c;
+    box-shadow: inset 0px 1px 0px #e74c3c, 0px 6px 0px #76261e;
+    width: 30%;
+    margin-bottom: 5%;
+}
+
+#panelMercado button:active,
+#panelMercado button:disabled,
+#panelEdificio button:active,
+#panelEdificio button:disabled {
+    top: 7px;
+    background-image: linear-gradient(bottom, rgb(100, 170, 30) 100%, rgb(129, 212, 51) 0%);
+    box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
+    color: #082430;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3);
+    background: #40B5CB;
+}
+
+
+#panelMercado button:before,
+#panelEdificio button::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    left: -2px;
+    top: 5px;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0px 1px 0px #fff;
+}
+
+#panelEdificio button:active::before,
+#panelMercado button:active::before {
+    top: -2px;
+}
+
+#panelEdificio button {
+    width: 30%;
+}
+
+#panelMercado button {
+    width: 60%;
+}
+
+.contenedorMercado {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 10rem;
+    gap: 5px;
+    animation: 1.5s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+#panelMercado #atraspanelMercado {
+    background-color: #e74c3c;
+    box-shadow: inset 0px 1px 0px #e74c3c, 0px 6px 0px #76261e;
+    margin-bottom: 5%;
+}
+
+#contenedorcuero #cuero {
+    background-color: #d1aba1;
+    box-shadow: inset 0px 1px 0px #fcd1c6, 0px 6px 0px #8d756f;
+}
+
+#contenedorpiedra #piedra {
+    background-color: #24C0FC;
+    box-shadow: inset 0px 1px 0px #24C0FC, 0px 6px 0px #126281;
+}
+
+#contenedormadera #madera {
+    background-color: #B9935A;
+    box-shadow: inset 0px 1px 0px #B9935A, 0px 6px 0px #634e30;
+}
+
+#contenedorbarquillo #barquillo {
+    background-color: #FF68C9;
+    box-shadow: inset 0px 1px 0px #FF68C9, 0px 6px 0px #793160;
+}
+
+#panelMercado #atraspanelMercado {
+    width: 30%;
+}
+
+.contenedorMercado p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Propiedades sobre el div contenedor principal, el cual tenemos cabecera, paneles y recursos contenedor */
+
+#contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Estilos sobre el panel principal */
+#panelPrincipal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    bottom: 22vh;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+/* ESTILOS SOBRE EL PANEL DE RECURSOS */
+#recursos {
+    position: relative;
+    bottom: 17vh;
+    padding-top: 7vh;
+    padding-bottom: 1vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(img/fondoMetalico1.3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 0%;
+    opacity: 0;
+    animation: 1s 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+#recursos p:nth-last-of-type(1) {
+    background-color: #40B5CB;
+    padding: 0.2rem;
+    width: 2rem;
+    border-radius: 25px;
+    border: 3px solid hsl(72deg 71% 56%);
+    font-family: 'Creepster', cursive;
+}
+
+
+#recursos img {
+    filter: drop-shadow(0 0 0.3rem hsl(72deg 71% 56%));
+}
+
+.itemRecurso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    width: 10%;
+}
+
+.itemRecurso:nth-of-type(6){
+    gap: 22px;
+}
+
+/* ESTILOS SOBRE LAS NOTIFICACIONES */
+/* centro de notificaciones */
+#notificacion {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    gap: 20px;
+    position: absolute;
+    top: 0vh;
+    margin-top: 2%;
+    width: 96%;
+    height: 98%;
+    padding: 0.2rem 0;
+    z-index: 4;
+    background-image: linear-gradient(50deg,
+            #008a3e 1%,
+            hsl(130deg 57% 38%) 40%,
+            hsl(114deg 49% 45%) 48%,
+            hsl(101deg 55% 48%) 51%,
+            hsl(91deg 60% 50%) 51%,
+            hsl(83deg 63% 51%) 50%,
+            #b0d73c 50%,
+            hsl(69deg 69% 56%) 49%,
+            hsl(65deg 71% 63%) 49%,
+            hsl(62deg 72% 71%) 52%,
+            hsl(58deg 80% 79%) 60%,
+            hsl(55deg 100% 88%) 99%);
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+
+/* Notificacino informativa */
+.nuevaNotificacion {
+    position: relative;
+    border-radius: 5px;
+    background-color: #c4dfe2e0;
+    box-shadow: 0px 5px 10px #000000d4;
+    border: 10px solid #98D5ED;
+    padding: 1rem;
+}
+
+/* Notificacion de error */
+.nuevaNotificacionError {
+    position: relative;
+    border-radius: 5px;
+    background-color: #c4dfe2e0;
+    border: 10px solid #FF9E48;
+    box-shadow: 0px 5px 10px #000000d4;
+    padding: 1rem;
+}
+
+#notificacion div {
+    width: 83%;
+}
+
+.nuevaNotificacion,
+.nuevaNotificacionError {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+.nuevaNotificacion p:nth-of-type(1),
+.nuevaNotificacionError p:nth-of-type(1) {
+    text-align: left;
+}
+
+.nuevaNotificacion p:nth-of-type(2),
+.nuevaNotificacionError p:nth-of-type(2) {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.2rem;
+    font-size: 15px;
+}
+
+
+/* Sombra sobre la imagen dentro de la notificacion */
+.nuevaNotificacion img {
+    filter: drop-shadow(0 0 0.3rem rgb(0, 0, 0));
+}
+
+.nuevaNotificacion p,.nuevaNotificacionError p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+}
+
+.nuevaNotificacion p:nth-of-type(2),
+.nuevaNotificacionError p:nth-of-type(2) {
+    font-weight: bold;
+}
+
+/* .notificacionMostrada {
+    animation: 0.5s 1 aparicionNotificacionPantalla;
+    animation-direction: normal;
+    z-index: -1;
+    animation-fill-mode: forwards;
+} */
+
+/* Estilos sobre el cuadro de dialogo que aparece al principio y al final del juego */
+.cuadroTutorial,
+.cuadroUltimoDialogo {
+    /* width: 80%; */
+    height: 50%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Estilos sobre el parrafo del cuadro de dialogo */
+.cuadroTutorial p,
+.cuadroUltimoDialogo p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 20px solid transparent;
+    border-top: 10px solid #008a3e;
+    border-left: 10px solid #b0d73c;
+    border-right: 10px solid #b0d73c;
+    border-bottom: 10px solid #008a3e;
+    cursor: pointer;
+    text-align: center;
+    /* hyphens: auto;
+    letter-spacing: 0.025em; */
+    border-radius: 10px;
+    width: 80%;
+    height: auto;
+    background-color: #f4f19f;
+    padding: 1vw;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+/* ANIMACIONES PARA LA INTERFAZ */
+
+/* Animacion para la aparicion de las notificaciones */
+
+@keyframes aparicionNotificacionPantalla {
+    from {
+        opacity: 0;
+        /* width: 0%; */
+        height: 0%;
+    }
+
+    to {
+        opacity: 1;
+        /* width: 95%; */
+        height: 97.2%;
+    }
+}
+
+@keyframes desaparicionNotificacionPantalla {
+    from {
+        opacity: 1;
+        /* width: 95%; */
+        height: 97.2%;
+    }
+
+    to {
+        opacity: 0;
+        /* width: 0%; */
+        height: 0%;
+    }
+}
+
+/* Animacion para la aparicion de recursos */
+
+@keyframes aparicionRecursos {
+    from {
+        opacity: 0;
+        width: 0%;
+        transform: rotateX(0deg);
+    }
+
+    to {
+        opacity: 1;
+        width: 100%;
+        transform: rotateX(360deg);
+    }
+}
+
+/* Animaciones para la aparicion de la pantalla y la desaparicion de esta */
+@keyframes aparicionPantalla {
+    from {
+        opacity: 0;
+        /* width: 0%; */
+        height: 0%;
+    }
+
+    to {
+        opacity: 1;
+        /* width: 95%; */
+        height: 98%;
+    }
+}
+
+@keyframes desaparicionPantalla {
+    from {
+        opacity: 1;
+        /* width: 95%; */
+        height: 98%;
+    }
+
+    to {
+        opacity: 0;
+        /* width: 0%; */
+        height: 0%;
+    }
+}
+
+/* Efecto para la aparicion del boton de forma fluida */
+@keyframes mostrarBoton {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ocultarBoton {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Animacion para la aparicion y desaparicion del body al iniciar la partida */
+@keyframes aparicionBody {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes desaparicionBody {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Animacion para la aparicion del cuadro tutorial */
+
+@keyframes aparicionTutorial {
+    from {
+        opacity: 0;
+        transform: translateY(30vh)
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/*Animacion para la Aparicion y desaparicion del menu lateral*/
+@keyframes aparicionPanel {
+    from {
+        opacity: 0;
+        transform: translateY(30vh)
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes desaparicionPanel {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(30vh)
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-2px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+
+
+
+/* MEDIA QUERIES PARA ADAPTARNOS EN FUNCION DEL TAMAÑO DEL DISPOSITIVO*/
+
+/* Estilos para pantallas a partir de 450 de ancho */
+@media screen and (min-width: 450px) {
+
+    #panelEdificio,
+    #panelMercado {
+        width: 27rem;
+        margin-top: 0.5rem;
+    }
+
+    #notificacion {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: scroll;
+        gap: 20px;
+        position: absolute;
+        top: 0vh;
+        margin-top: 0.2rem;
+        width: 27rem;
+        height: 98%;
+    }
+
+    @keyframes aparicionRecursos {
+        from {
+            opacity: 0;
+            width: 0%;
+            transform: rotateX(0deg);
+        }
+
+        to {
+            opacity: 1;
+            width: 27rem;
+            transform: rotateX(360deg);
+        }
+    }
+
+    @keyframes aparicionPantalla {
+        from {
+            opacity: 0;
+            height: 0%;
+        }
+
+        to {
+            opacity: 1;
+            height: 98%;
+        }
+    }
+
+    @keyframes desaparicionPantalla {
+        from {
+            opacity: 1;
+            height: 98%;
+        }
+
+        to {
+            opacity: 0;
+            height: 0%;
+        }
+    }
+
+}
+
+/* Estilos para pantallas a partir de 900 de ancho */
+@media screen and (min-width: 900px) {
+    body {
+        background-image: url(img/fondo4.jpg);
+    }
+
+    .cuadroTutorial p,
+    .cuadroUltimoDialogo p {
+        width: 20rem;
+    }
+
+}
+
+/* Estilos para pantallas con un ancho de entre 300 y 400 px */
+@media screen and (min-width:300px) and (max-width:400px) {
+
+    #recursos {
+        position: relative;
+        bottom: 49vw;
+        padding-top: 7vh;
+        padding-bottom: 1vh;
+    }
+
+    .itemRecurso img {
+        width: 12vw;
+    }
+
+    #panelPrincipal {
+        bottom: 25vh;
+    }
+
+    #panelPrincipal button {
+        margin: 4vw;
+        padding: 4vw;
+        font-size: 18px;
+    }
+
+    .nuevaNotificacion img {
+        width: 15vw;
+    }
+
+    .nuevaNotificacion p {
+        padding-right: 0.5rem;
+    }
+
+    .contenidoNotificacion {
+        font-size: 4vw;
+    }
+
+    #panelEdificio,
+    #panelMercado {
+        top: 0;
+    }
+
+    @keyframes aparicionRecursos {
+        from {
+            opacity: 0;
+            width: 0%;
+            transform: rotateX(0deg);
+        }
+
+        to {
+            opacity: 1;
+            width: 100vw;
+            transform: rotateX(360deg);
+        }
+    }
+}
+
+@media screen and (max-height:735px) {
+    #cabecera img {
+        width: 15vw;
+        margin-bottom: 1vw;
+    }
+
+    #cabecera img:nth-of-type(2) {
+        width: 10vw;
+        /* bottom: 23vw; */
+        margin-bottom: 1vw;
+    }
+
+}
+
+
+
+/* Estilos para pantallas con un alto maximo de 785 y un ancho maximo de 481 px */
+@media screen and (max-height:785px) and (max-width:481px) {
+
+    #panelMercado .contenedorMercado:nth-of-type(3) {
+        margin-top: 0%;
+    }
+
+    #panelMercado {
+        gap: 1rem;
+    }
+
+    #cabecera img {
+        width: 70vw;
+    }
+
+    #cabecera img:nth-of-type(2) {
+        width: 50vw;
+        bottom: 27vw;
+    }
+
+    #panelEdificio,
+    #panelMercado {
+        /* gap: 2rem; */
+        top: 35vh;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 12vh;
+        padding-top: 9vh;
+        padding-bottom: 1vh;
+    }
+
+    #panelPrincipal {
+        bottom: 15%;
+    }
+
+    #panelPrincipal button {
+        margin: 1rem;
+        padding: 1vh;
+    }
+}
+
+/* Estilos para pantallas con un ancho maximo de 299 px y un alto maximo de 653 */
+@media screen and (min-width:280px) and (max-width:280px) and (min-height:653px) and (max-height:653px) {
+
+    #imagenMenu {
+        position: absolute;
+        top: 0;
+        margin-top: 7vh;
+        width: 17rem;
+    }
+
+    .cuadroTutorial,
+    .cuadroUltimoDialogo {
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        align-items: center;
+    }
+
+    #cabecera img:nth-of-type(2) {
+        bottom: 54vw;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 20vh;
+        padding-top: 8vh;
+        padding-bottom: 1vh;
+    }
+
+    .itemRecurso img {
+        width: 10vw;
+    }
+
+    #recursos p:nth-last-of-type(1) {
+        padding: 0.1rem;
+        width: 8vw;
+    }
+
+    #panelPrincipal {
+        bottom: 25%;
+    }
+
+    #panelEdificio,
+    #panelMercado {
+        top: 0;
+    }
+
+    #panelEdificio div button {
+        width: 80%;
+    }
+
+    #panelMercado button {
+        width: 80%;
+    }
+
+    .contenedorMercado {
+        width: 7rem;
+    }
+
+    .divConImagen p{
+        font-size: 12px;
+    }
+
+    .divConImagen img:nth-of-type(1){
+        width: 28%;
+    }
+
+    #notificacion .nuevaNotificacion{
+        width: 80%;
+    }
+    .nuevaNotificacion img{
+        width: 20%;
+    }
+
+    .nuevaNotificacion p{
+        font-size: 11px;
+    }
+
+    @keyframes aparicionRecursos {
+        from {
+            opacity: 0;
+            width: 0%;
+            transform: rotateX(0deg);
+        }
+
+        to {
+            opacity: 1;
+            width: 99vw;
+            transform: rotateX(360deg);
+        }
+    }
+}
+
+/* Estilos para pantallas con un width de 360 y un height de 740 */
+@media screen and (min-width:360px) and (max-width:360px) and (min-height:740px)and (max-height:740px) {
+
+    #cabecera img:nth-of-type(2) {
+        bottom: 45vw;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 18vh;
+        padding-top: 8vh;
+        padding-bottom: 1vh;
+    }
+
+    .itemRecurso img {
+        width: 10vw;
+    }
+
+    #recursos p:nth-last-of-type(1) {
+        padding: 0.1rem;
+        width: 8vw;
+    }
+
+    #panelPrincipal {
+        bottom: 22%;
+    }
+
+    #panelPrincipal button {
+        margin: 4vw;
+        padding: 2.5vw;
+        font-size: 18px;
+    }
+
+    #panelEdificio,
+    #panelMercado {
+        top: 0;
+    }
+
+    @keyframes aparicionRecursos {
+        from {
+            opacity: 0;
+            width: 0%;
+            transform: rotateX(0deg);
+        }
+
+        to {
+            opacity: 1;
+            width: 100vw;
+            transform: rotateX(360deg);
+        }
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1280px) and (min-height:800px)and (max-height:800px) {
+
+    #cabecera img:nth-of-type(2) {
+        bottom: 14vw;
+        width: 17vw;
+    }
+    #panelPrincipal {
+        bottom: 26%;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 27vh;
+        padding-top: 8vh;
+        padding-bottom: 1vh;
+    }
+
+}
+
+@media screen and (min-width:1024px) and (max-width:1024px) and (min-height:600px)and (max-height:600px) {
+    
+    #cabecera img:nth-of-type(2) {
+        bottom: 15vw;
+        width: 13vw;
+    }
+    #panelPrincipal {
+        bottom: 30%;
+    }
+
+    #panelPrincipal button {
+        padding: 0.3vw;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 32vh;
+        padding-top: 10vh;
+        padding-bottom: 1vh;
+    }
+
+}
+
+@media screen and (min-width:350px) and (max-width:375px) and (min-height:667px)and (max-height:667px) {
+    
+    #cabecera img:nth-of-type(2) {
+        bottom: 45vw;
+        width: 40vw;
+    }
+    #panelPrincipal {
+        bottom: 29%;
+    }
+
+    #panelEdificio,
+    #panelMercado {
+        top: 0;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 29vh;
+        padding-top: 10vh;
+        padding-bottom: 1vh;
+    }
+
+}
+
+@media screen and (min-width:540px) and (max-width:540px) and (min-height:720px)and (max-height:720px) {
+    
+    #cabecera img:nth-of-type(2) {
+        bottom: 45vw;
+        width: 40vw;
+    }
+    #panelPrincipal {
+        bottom: 35%;
+    }
+
+    #panelEdificio,
+    #panelMercado {
+        top: 0;
+    }
+
+    #recursos {
+        position: relative;
+        bottom: 34vh;
+        padding-top: 10vh;
+        padding-bottom: 1vh;
+    }
+
+}
