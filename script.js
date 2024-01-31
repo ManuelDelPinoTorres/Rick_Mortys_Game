@@ -18,14 +18,14 @@ window.onload = function () {
     let notificacionesMostradas = false;
     let numeroDeNotificaciones = 0;
     //VARIABLES CON LAS QUE ESTABLECEMOS LA CANTIDAD DE RECURSOS QUE TENEMOS DE CADA TIPO
-    let monedas = 50;
-    let piedra = 100;
-    let madera = 100;
-    let trabajadores = 100;
-    let rickinillo = 100;
-    let cuero = 100;
-    let caballos = 100;
-    let barquillo = 100;
+    let monedas = 0;
+    let piedra = 0;
+    let madera = 0;
+    let trabajadores = 0;
+    let rickinillo = 0;
+    let cuero = 0;
+    let caballos = 0;
+    let barquillo = 0;
 
     //BOOLEANOS PARA CONTROLAR LAS CREACIONES QUE SE HAN LLEVADO A CABO
     let existeCentroRecursos = false;
@@ -319,6 +319,12 @@ window.onload = function () {
         document.getElementById("recoger").addEventListener("click", function () {
             let maderaAleatoria = Math.floor(Math.random() * (trabajadores + 2));
             let piedraAleatoria = Math.floor(Math.random() * (trabajadores + 2));
+
+            if(trabajadores == 0 ){
+                maderaAleatoria = Math.floor(Math.random() * (2)) + 1;
+                piedraAleatoria = Math.floor(Math.random() * (2)) + 1;
+            }
+        
 
             madera += maderaAleatoria;
             piedra += piedraAleatoria;
